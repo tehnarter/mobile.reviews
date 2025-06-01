@@ -1,0 +1,15 @@
+/* assets/styles/themes.scss */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1f2937;
+}
+
+body.theme-dark {
+  --bg-color: #1f2937;
+  --text-color: #f3f4f6;
+}
+
+body.theme-light {
+  --bg-color: #ffffff;
+  --text-color: #1f2937;
+}

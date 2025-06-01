@@ -1,0 +1,20 @@
+@use "@/assets/styles/utils" as *; // для міксинів/функцій
+@use "./fonts" as *;
+@use "./css-variables" as *;
+@use "./general" as *;
+@use "./typography" as *;
+@use "./hovers" as *;
+// @use "./themes" as *;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+  // background-color: var(--bg-color);
+  // color: var(--text-color);
+  // transition:
+  //   background-color 2.5s,
+  //   color 2.5s; // fallback
+}
