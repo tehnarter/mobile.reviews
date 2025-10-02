@@ -132,7 +132,11 @@ watchEffect(() => {
   const ogImage = `${baseUrl}/images/cover.jpg` // або translatedPhone.value.metaImage якщо є
 
   useHead({
+    htmlAttrs: {
+      lang,
+    },
     title,
+
     meta: [
       { name: "description", content: description },
 
@@ -149,9 +153,6 @@ watchEffect(() => {
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: ogImage },
     ],
-    htmlAttrs: {
-      lang,
-    },
   })
 })
 </script>

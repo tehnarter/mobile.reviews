@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-03",
-  ssr: true,
+  ssr: false,
   typescript: {
     shim: false,
   },
@@ -30,10 +30,11 @@ export default defineNuxtConfig({
     // або вручну звідси підтягни
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
     name: process.env.NUXT_SITE_NAME || "Default Site Name",
+    trailingSlash: true, // шляхи з / в sitemap
   },
 
   gtag: {
-    id: "G-TNY81MZGFQ", // id: "G-EFSP2Y6YBS", // 🔁 Увімкни, коли отримаєш ID від Google Analytics
+   // id: "G-BMZC0KJY64", // Увімкни, коли отримаєш ID від Google Analytics
   },
 
   app: {
@@ -112,7 +113,13 @@ export default defineNuxtConfig({
       },
     },
   },
-
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: "append", // "append" або "remove" — маршрут без /
+      },
+    },
+  },
   devServer: {
     host: "0.0.0.0",
     port: 3000,

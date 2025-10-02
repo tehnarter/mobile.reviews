@@ -31,7 +31,38 @@ const ogUrl = `${baseUrl}${urlPrefix}/`
 const Image = `${baseUrl}/images/cover.jpg`
 
 useHead({
+  htmlAttrs: {
+    lang,
+  },
   title: t("seo.title"),
+  link: [
+    { rel: "canonical", href: ogUrl },
+    {
+      rel: "alternate",
+      href: "https://mobile.infoo.tech/",
+      hreflang: "x-default",
+    },
+    {
+      rel: "alternate",
+      href: "https://mobile.infoo.tech/",
+      hreflang: "uk",
+    },
+    {
+      rel: "alternate",
+      href: "https://mobile.infoo.tech/en/",
+      hreflang: "en",
+    },
+    {
+      rel: "alternate",
+      href: "https://mobile.infoo.tech/pl/",
+      hreflang: "pl",
+    },
+    {
+      rel: "alternate",
+      href: "https://mobile.infoo.tech/ru/",
+      hreflang: "ru",
+    },
+  ],
   meta: [
     { name: "description", content: t("seo.description") },
     { name: "keywords", content: t("seo.keywords") },
@@ -49,8 +80,5 @@ useHead({
     { name: "twitter:description", content: t("twitter.description") },
     { name: "twitter:image", content: Image },
   ],
-  htmlAttrs: {
-    lang,
-  },
 })
 </script>
