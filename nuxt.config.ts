@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-03",
-  ssr: false,
+
   typescript: {
     shim: false,
   },
@@ -34,7 +34,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-   // id: "G-BMZC0KJY64", // Увімкни, коли отримаєш ID від Google Analytics
+    id: "G-BMZC0KJY64", // Увімкни, коли отримаєш ID від Google Analytics
   },
 
   app: {
@@ -61,39 +61,46 @@ export default defineNuxtConfig({
   i18n: {
     lazy: true,
     langDir: "locales",
-    strategy: "prefix_except_default",
-    defaultLocale: "ua",
+    strategy: "prefix",
+    trailingSlash: true, // додає слеш у кінці URL → /ua/ замість /ua
+    defaultLocale: "en",
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
     locales: [
       {
         code: "ua",
         iso: "uk-UA",
         file: "ua.json",
+        language: "uk",
         name: "Українська",
       },
       {
         code: "en",
         iso: "en-US",
         file: "en.json",
+        language: "en",
         name: "English",
       },
       {
         code: "pl",
         iso: "pl-PL",
         file: "pl.json",
+        language: "pl",
         name: "Polski",
       },
       {
         code: "ru",
         iso: "ru-RU",
         file: "ru.json",
+        language: "ru",
         name: "Русский",
       },
     ],
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
-      alwaysRedirect: true,
-      fallbackLocale: "ua",
+      alwaysRedirect: true, // true завжди примусово редіректити на мову браузера
+      redirectOn: "root", // тільки редірект з /
+      fallbackLocale: "en",
     },
   },
 
@@ -119,6 +126,19 @@ export default defineNuxtConfig({
         trailingSlash: "append", // "append" або "remove" — маршрут без /
       },
     },
+  },
+  nitro: {
+    preset: "static", //"node-server" — серверний режим (SSR) | "static"— повністю статичний сайт (SSG)
+    prerender: {
+      // Вкажи тут усі маршрути, які потрібно обов’язково зберегти як HTML
+      routes: [
+        // "/", // index.html
+        // "/about", // about/index.html
+      ],
+    },
+    // logLevel: "debug",
+    // // Це примусово виведе помилки під час SSR
+    // errorHandler: "~/server/error-handler",
   },
   devServer: {
     host: "0.0.0.0",

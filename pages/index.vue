@@ -17,7 +17,7 @@
 <script setup>
 import { useI18n } from "vue-i18n"
 import { useHead, useRuntimeConfig } from "#imports"
-
+const i18nHead = useLocaleHead()
 const { t, locale } = useI18n()
 const lang = locale.value
 
@@ -26,14 +26,15 @@ const baseUrl =
   config.public.siteUrl?.replace(/\/$/, "") || "https://example.com"
 
 // Додаємо префікс до URL лише якщо мова НЕ українська
-const urlPrefix = lang !== "ua" ? `/${lang}` : ""
-const ogUrl = `${baseUrl}${urlPrefix}/`
+
+const ogUrl = `${baseUrl}/${lang}/`
 const Image = `${baseUrl}/images/cover.jpg`
 
 useHead({
   htmlAttrs: {
-    lang,
+    lang: i18nHead.value.htmlAttrs?.lang || "en",
   },
+
   title: t("seo.title"),
   link: [
     { rel: "canonical", href: ogUrl },
@@ -44,7 +45,7 @@ useHead({
     },
     {
       rel: "alternate",
-      href: "https://mobile.infoo.tech/",
+      href: "https://mobile.infoo.tech/ua/",
       hreflang: "uk",
     },
     {
